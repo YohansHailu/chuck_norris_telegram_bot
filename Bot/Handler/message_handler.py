@@ -23,7 +23,7 @@ async def help_message(message: types.Message):
         "/joke - will tell you a random joke\n"
         "/flirt - it will flirt with you, be careful\n"
         "/chuck - will tell you chuck norris joke\n"
-        "/rol_joke - will tell you a random dice role\n"
+        "/dice- will tell you a random dice role\n"
 
         "* for a normal text it will return the echo of the message"
     )
@@ -31,7 +31,7 @@ async def help_message(message: types.Message):
     await message.reply(help_text, parse_mode=ParseMode.HTML)
 
 
-@message_route.message(Command("rol_dice"))
+@message_route.message(Command("dice"))
 async def roll_dice(message: types.Message):
     import random
     dice_result = random.randint(1, 6)
@@ -47,12 +47,12 @@ async def tell_joke(message: types.Message):
 
 
 @message_route.message(Command("flirt"))
-async def tell_joke(message: types.Message):
+async def flirt(message: types.Message):
     await message.reply(get_random_compliment())
 
 
 @message_route.message(Command("chuck"))
-async def tell_joke(message: types.Message):
+async def tell_chuck(message: types.Message):
     await message.reply(get_random_chuck_norris_jokes())
 
 
