@@ -21,7 +21,7 @@ async def help_message(message: types.Message):
         "/start - Start the bot\n"
         "/help - Display this help message\n"
         "/joke - will tell you a random joke\n"
-        "/flirt - it will flirt with you, be careful"
+        "/flirt - it will flirt with you, be careful\n"
         "/chuck - will tell you chuck norris joke\n"
         "/rol_joke - will tell you a random dice role\n"
 
