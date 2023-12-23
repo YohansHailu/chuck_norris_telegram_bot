@@ -14,11 +14,6 @@ async def start(message: Message):
     await message.reply(f"hello {message.from_user.full_name}")
     await help_message(message)
 
-    button = KeyboardButton(text="Menu")
-    keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True, keyboard=[[button]])
-    await message.answer("Choose an option:", reply_markup=keyboard)
-
-
 
 @message_route.message(Command("help"))
 async def help_message(message: Message):
@@ -31,7 +26,6 @@ async def help_message(message: Message):
         "/flirt - it will flirt with you, be careful\n"
         "/chuck - will tell you chuck norris joke\n"
         "/dice- will tell you a random dice role\n"
-
         "* for a normal text it will return the echo of the message"
     )
 
