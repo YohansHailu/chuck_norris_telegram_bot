@@ -7,8 +7,5 @@ import os
 load_dotenv()
 token = os.getenv('API_KEY')
 
-bot = Bot(token=token, parse_mode="HTML",
-
-    session=AiohttpSession(proxy='http://proxy.server:3128')
-
-          )
+##session=AiohttpSession(proxy='http://proxy.server:3128')
+bot = Bot(token=token, parse_mode="HTML")

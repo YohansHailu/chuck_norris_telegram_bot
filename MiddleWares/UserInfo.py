@@ -2,6 +2,7 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 from Bot.bot_instance import bot
 import os
+from loguru import logger
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -32,12 +33,16 @@ class UserInfo(BaseMiddleware):
             }
             self.user_repo.add(user)
             await self.notify_new_user_admin(message)
-            print("new user saved")
-        print("user info saved")
+            log_message = f"new user: {message.from_user.username}"
+            logger.info(log_message)
+            
+        log_message = f"user saved to database"
+        logger.info(log_message)
     
     async def notify_new_user_admin(self, message: Message):
         admin_chat_id = os.getenv("ADMIN_CHAT_ID")
         await bot.send_message(admin_chat_id, f"new user: {message.from_user.username}")
-        print("new user notified to admin")
+        log_message = f"new user notified to admin"
+        logger.info(log_message)
 
 
