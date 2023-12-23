@@ -1,9 +1,8 @@
 from aiogram import Bot
+from dotenv import load_dotenv
 import os
 
-from dotenv import load_dotenv
-
 load_dotenv()
-token = os.getenv('API_KEY') or "NO API TOKEN"
+token = os.getenv('API_KEY')
 
 bot = Bot(token=token, parse_mode="HTML")

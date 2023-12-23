@@ -1,4 +1,5 @@
-from aiogram import Router, types
+from aiogram import Router
+from aiogram.types import  Message, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.enums import ParseMode
 from aiogram.filters import Command
 from Bot.Handler.utilites import get_random_compliment, get_random_chuck_norris_jokes
@@ -8,13 +9,19 @@ message_route = Router()
 
 
 @message_route.message(Command("start"))
-async def start(message: types.Message):
+async def start(message: Message):
+
     await message.reply(f"hello {message.from_user.full_name}")
     await help_message(message)
 
+    button = KeyboardButton(text="Menu")
+    keyboard = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True, keyboard=[[button]])
+    await message.answer("Choose an option:", reply_markup=keyboard)
+
+
 
 @message_route.message(Command("help"))
-async def help_message(message: types.Message):
+async def help_message(message: Message):
     help_text = (
         "Welcome to the Help section!\n\n"
         "Available commands:\n"
@@ -32,14 +39,14 @@ async def help_message(message: types.Message):
 
 
 @message_route.message(Command("dice"))
-async def roll_dice(message: types.Message):
+async def roll_dice(message: Message):
     import random
     dice_result = random.randint(1, 6)
     await message.reply(f"🎲 You rolled a {dice_result}!")
 
 
 @message_route.message(Command("joke"))
-async def tell_joke(message: types.Message):
+async def tell_joke(message: Message):
     response = requests.get("https://official-joke-api.appspot.com/jokes/random")
     joke_data = response.json()
     joke = f"{joke_data['setup']}\n{joke_data['punchline']}"
@@ -47,15 +54,15 @@ async def tell_joke(message: types.Message):
 
 
 @message_route.message(Command("flirt"))
-async def flirt(message: types.Message):
+async def flirt(message: Message):
     await message.reply(get_random_compliment())
 
 
 @message_route.message(Command("chuck"))
-async def tell_chuck(message: types.Message):
+async def tell_chuck(message: Message):
     await message.reply(get_random_chuck_norris_jokes())
 
 
 @message_route.message()
-async def echo(message: types.Message):
+async def echo(message: Message):
     await message.answer(message.text)
