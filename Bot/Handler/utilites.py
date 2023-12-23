@@ -343,9 +343,11 @@ text_for_here = [
 "Can you send me a picture? My friends don’t believe that angels exist. - ",
 ]
 
-def get_random_compliment():
-    #return random.choice(compliments)
+def get_random_text_for_here():
     return random.choice(text_for_here)
+
+def get_random_compliment():
+    return random.choice(compliments)
 
 
 def get_random_chuck_norris_jokes():
