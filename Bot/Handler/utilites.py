@@ -235,7 +235,7 @@ compliments = [
 ]
 
 
-text_for_here = [
+text_for_her = [
 "I’d love to see you only on days that end with 'y'.",
 "You make things hard. I like that.",
 "Are you from Tennessee? Because you’re the only ten I see!",
@@ -343,8 +343,8 @@ text_for_here = [
 "Can you send me a picture? My friends don’t believe that angels exist. - ",
 ]
 
-def get_random_text_for_here():
-    return random.choice(text_for_here)
+def get_random_text_for_her():
+    return random.choice(text_for_her)
 
 def get_random_compliment():
     return random.choice(compliments)

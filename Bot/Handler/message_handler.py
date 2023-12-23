@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.types import  Message, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.enums import ParseMode
 from aiogram.filters import Command
-from Bot.Handler.utilites import get_random_compliment, get_random_chuck_norris_jokes, get_random_text_for_here
+from Bot.Handler.utilites import get_random_compliment, get_random_chuck_norris_jokes, get_random_text_for_her
 import requests
 
 message_route = Router()
@@ -26,7 +26,7 @@ async def help_message(message: Message):
         "/flirt - it will flirt with you, be careful\n"
         "/chuck - will tell you chuck norris joke\n"
         "/dice- will tell you a random dice role\n"
-        "/text_here - will tell you a random text for here\n"
+        "/text_her - will tell you a random text for her\n"
         "* for a normal text it will return the echo of the message"
     )
 
@@ -53,9 +53,9 @@ async def flirt(message: Message):
     await message.reply(get_random_compliment())
 
 
-@message_route.message(Command("text_here"))
-async def text_for_here(message: Message):
-    await message.reply(get_random_text_for_here())
+@message_route.message(Command("text_her"))
+async def text_for_her(message: Message):
+    await message.reply(get_random_text_for_her())
 
 
 @message_route.message(Command("chuck"))
