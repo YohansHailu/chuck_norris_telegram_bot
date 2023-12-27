@@ -6,6 +6,6 @@ import os
 
 
 load_dotenv()
-token = os.getenv('API_KEY_DEV')
+token = os.getenv('API_KEY')
 bot = Bot(token=token, parse_mode="HTML")
 dp = Dispatcher()
