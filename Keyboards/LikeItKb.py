@@ -32,12 +32,7 @@ activity_callback_router = Router()
 
 @activity_callback_router.callback_query(lambda x: x.data.startswith("activity"))
 async def acivity_callback(callback_query:types.CallbackQuery):
-    global like_count
-
-
-    # update like 
-    # update inlin_markup
-    
     data=CallbackData.unpack(callback_query.data)
+    print(data)
     ##await bot.edit_message_reply_markup(chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id, reply_markup=get_inline_markup(obj))
-    await callback_query.message.answer("you like it don't you ")
+    ##await callback_query.message.answer("you like it don't you ")
