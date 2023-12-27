@@ -1,11 +1,6 @@
-from pymongo import MongoClient
-
-
 class Repository:
-    def __init__(self, connectionUrl, db_name, collection_name):
-        self.client = MongoClient(connectionUrl)
-        self.db = self.client.get_database(db_name)
-        self.collection = self.db.get_collection(collection_name)
+    def __init__(self, collection):
+        self.collection = collection
 
     def get_all(self):
         return self.collection.find()
@@ -27,3 +22,6 @@ class Repository:
 
     def delete(self, id):
         self.collection.delete_one({"_id": id})
+
+    def get_random(self):
+        return self.collection.aggregate([{"$sample": {"size": 1}}]).next()
