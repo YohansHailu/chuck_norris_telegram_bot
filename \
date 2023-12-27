@@ -1,0 +1,8 @@
+from aiogram import Router, types
+
+activity_callback_router = Router()
+
+@activity_callback_router.callback_query(lambda c: c.startsWith("activity"))
+def acivity_callback(callback_query:types.CallbackQuery):
+    callback_query.message.answer("you like it don't you")
+

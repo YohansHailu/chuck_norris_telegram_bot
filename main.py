@@ -9,11 +9,15 @@ from Persistence.DbContext import user_repo
 from Bot.bot_instance import dp
 from Handler.message_handler import command_handler
 
+from Keyboards.LikeItKb import activity_callback_router
+
 load_dotenv()
+
 
 async def main() -> None:
     dp.message.middleware(UserInfo(user_repo))
     dp.include_router(command_handler)
+    dp.include_router(activity_callback_router)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":

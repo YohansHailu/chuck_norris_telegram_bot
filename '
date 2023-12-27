@@ -6,20 +6,20 @@ from aiogram.filters.callback_data import CallbackData
 
 
 class activity_callback_data(CallbackData, prefix="activity"):
-    obj_id:str
+    id:str
     activity:str
 
 
 def get_inline_markup(obj):
 
-    id = str(obj["_id"])
     like_count = obj.get('like', 0)
     love_count = obj.get('love', 0)
     funny_count = obj.get('funny', 0)
+    id = str(obj["_id"])
 
-    like_button = InlineKeyboardButton(text=f"👍 {like_count}", callback_data=activity_callback_data(obj_id=id, activity="like").pack())
-    love_button = InlineKeyboardButton(text=f"❤️ {love_count}", callback_data=activity_callback_data(obj_id=id, activity="love").pack())
-    funny_button = InlineKeyboardButton(text=f"😄 {funny_count}", callback_data=activity_callback_data(obj_id=id, activity="funny").pack())
+    like_button = InlineKeyboardButton(text=f"👍 {like_count}", callback_data=acivity_callback_data(id=id, activity="like").pack())
+    love_button = InlineKeyboardButton(text=f"❤️ {love_count}", callback_data=acivity_callback_data(id=id, activity="love").pack())
+    funny_button = InlineKeyboardButton(text=f"😄 {funny_count}", callback_data=acivity_callback_data(id=id, activity="funny").pack())
 
 
     reaction_kb = InlineKeyboardMarkup(inline_keyboard=[[like_button, love_button, funny_button]])
@@ -30,9 +30,10 @@ def get_inline_markup(obj):
 
 activity_callback_router = Router()
 
-@activity_callback_router.callback_query(lambda x: x.data.startswith("activity"))
-async def acivity_callback(callback_query:types.CallbackQuery):
-    data=CallbackData.unpack(callback_query.data)
-    print(data)
+@activity_callback_router.callback_query(callback_data.filter(lambda x:x.acivity == "like"))
+async def acivity_callback(callback_query:types.CallbackQuery, callback_data: callback_data):
+    global like_count
+    
+    print(callback_data.id)
     ##await bot.edit_message_reply_markup(chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id, reply_markup=get_inline_markup(obj))
-    ##await callback_query.message.answer("you like it don't you ")
+    await callback_query.message.answer("you like it don't you ")
